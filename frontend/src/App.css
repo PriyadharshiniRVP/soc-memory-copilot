@@ -1,44 +1,558 @@
-body{
+/* ===========================
+   GLOBAL
+=========================== */
+
+*{
     margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#f4f6f9;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+    background:#07111f;
+    color:#e5edf7;
 }
 
 .container{
-    width:90%;
+    width:95%;
     margin:auto;
-    padding:20px;
+    padding:30px;
 }
 
-h1{
-    text-align:center;
-    color:#1f4e79;
+/* ===========================
+   HEADER
+=========================== */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+    padding:25px 30px;
+
+    background:#0d1b2a;
+
+    border:1px solid #1f3c58;
+
+    border-radius:16px;
+
+    box-shadow:
+    0 0 20px rgba(0,170,255,.08);
 }
+
+.header h1{
+    color:#4cc9ff;
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.header p{
+    color:#9fb5cb;
+    font-size:15px;
+}
+
+.status-card{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    background:#12263d;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    font-weight:600;
+}
+
+.status-dot{
+
+    width:12px;
+    height:12px;
+
+    border-radius:50%;
+
+    background:#00ff90;
+
+    box-shadow:0 0 12px #00ff90;
+}
+
+/* ===========================
+   DASHBOARD
+=========================== */
+
+.dashboard{
+
+    display:grid;
+
+    grid-template-columns:1.25fr .9fr;
+
+    gap:25px;
+
+    align-items:start;
+
+}
+
+.left-panel{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.right-panel{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/* ===========================
+   PANELS
+=========================== */
 
 .panel{
-    background:white;
-    margin-top:20px;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 2px 6px rgba(0,0,0,.1);
+
+    background:#0d1b2a;
+
+    border-radius:16px;
+
+    padding:24px;
+
+    border:1px solid #19314c;
+
+    box-shadow:
+
+    0 5px 18px rgba(0,0,0,.35);
+
 }
 
-.card{
-    border:1px solid #ddd;
-    border-radius:8px;
-    margin:15px 0;
-    padding:15px;
+.panel h2{
+
+    color:#4cc9ff;
+
+    margin-bottom:20px;
+
 }
 
-button{
-    background:#2563eb;
+/* ===========================
+   PANEL TITLE
+=========================== */
+
+.panel-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.feed-count{
+
+    background:#163550;
+
+    color:#7fd8ff;
+
+    padding:6px 14px;
+
+    border-radius:25px;
+
+    font-size:14px;
+
+}
+
+/* ===========================
+   THREAT CARD
+=========================== */
+
+.threat-card{
+
+    background:#13263b;
+
+    border:1px solid #21496e;
+
+    border-radius:14px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    transition:.25s;
+
+}
+
+.threat-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#4cc9ff;
+
+    box-shadow:0 0 25px rgba(76,201,255,.15);
+
+}
+
+.threat-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+}
+
+.threat-header h3{
+
     color:white;
-    border:none;
-    padding:10px 18px;
-    border-radius:6px;
-    cursor:pointer;
+
 }
 
-button:hover{
-    background:#1d4ed8;
+.description{
+
+    color:#bdd0e2;
+
+    margin-bottom:15px;
+
+    line-height:1.6;
+
+}
+
+/* ===========================
+   TAGS
+=========================== */
+
+.tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-bottom:15px;
+
+}
+
+.tag{
+
+    background:#184e77;
+
+    color:#8de4ff;
+
+    padding:5px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+}
+
+/* ===========================
+   SEVERITY
+=========================== */
+
+.severity{
+
+    background:#9b1c1c;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+/* ===========================
+   IOC BOX
+=========================== */
+
+.indicator-box{
+
+    background:#081521;
+
+    border-left:4px solid #4cc9ff;
+
+    padding:14px;
+
+    border-radius:8px;
+
+    margin-bottom:18px;
+
+}
+
+.indicator-box strong{
+
+    color:#4cc9ff;
+
+}
+
+.indicator-box p{
+
+    margin:8px 0;
+
+    word-break:break-word;
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.investigate-btn{
+
+    width:100%;
+
+    padding:13px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+    90deg,
+    #0077ff,
+    #00c6ff
+    );
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+}
+
+.investigate-btn:hover{
+
+    transform:scale(1.02);
+
+    box-shadow:
+
+    0 0 18px rgba(0,198,255,.4);
+
+}
+
+/* ===========================
+   INFO GRID
+=========================== */
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+
+}
+
+.info-grid div{
+
+    background:#13263b;
+
+    padding:16px;
+
+    border-radius:10px;
+
+}
+
+.info-grid span{
+
+    display:block;
+
+    color:#7ea2bf;
+
+    margin-bottom:8px;
+
+    font-size:13px;
+
+}
+
+.info-grid h3{
+
+    color:white;
+
+}
+
+/* ===========================
+   WHOIS
+=========================== */
+
+.whois{
+
+    margin-top:20px;
+
+}
+
+.whois a{
+
+    color:#4cc9ff;
+
+    text-decoration:none;
+
+}
+
+.whois a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ===========================
+   MEMORY
+=========================== */
+
+.memory-box{
+
+    background:#07111f;
+
+    color:#8fffe5;
+
+    padding:18px;
+
+    border-radius:10px;
+
+    max-height:320px;
+
+    overflow:auto;
+
+    white-space:pre-wrap;
+
+    line-height:1.6;
+
+    border:1px solid #1f3c58;
+
+}
+
+/* ===========================
+   EMPTY
+=========================== */
+
+.empty{
+
+    color:#7ea2bf;
+
+    text-align:center;
+
+    padding:30px;
+
+}
+
+/* ===========================
+   LOADING
+=========================== */
+
+.loading-card{
+
+    background:#12304c;
+
+    color:#7fd8ff;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    animation:pulse 1.3s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        opacity:.6;
+
+    }
+
+    50%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:.6;
+
+    }
+
+}
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#29567d;
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#07111f;
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:900px){
+
+    .dashboard{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .header{
+
+        flex-direction:column;
+
+        gap:18px;
+
+        text-align:center;
+
+    }
+
+    .info-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
 }

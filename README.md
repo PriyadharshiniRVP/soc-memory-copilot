@@ -35,6 +35,7 @@ This transforms the assistant from a simple chatbot into a continuously learning
 - 📊 React dashboard for analysts
 - ⚡ FastAPI backend
 - 🔄 Memory recall across investigations
+![alt text](image-1.png)
 
 ---
 

@@ -8,14 +8,14 @@ import InvestigationPanel from "./components/InvestigationPanel";
 import MemoryPanel from "./components/MemoryPanel";
 
 function App() {
-
     const [investigation, setInvestigation] = useState(null);
     const [memory, setMemory] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const investigate = async (ioc) => {
+        setLoading(true);
 
         try {
-
             const response = await api.post("/investigate", {
                 target: ioc.target,
                 type: ioc.type,
@@ -23,37 +23,79 @@ function App() {
 
             setInvestigation(response.data);
 
-            if (response.data.memory) {
-                setMemory(response.data.memory);
+            if (
+                response.data.memory &&
+                response.data.memory.length > 0
+            ) {
+                setMemory(response.data.memory[0].text);
+            } else {
+                setMemory("No previous investigation found.");
             }
-
         } catch (err) {
-
             console.error(err);
 
             alert(
                 err.response?.data?.detail ||
                 "Investigation failed."
             );
-
+        } finally {
+            setLoading(false);
         }
-
     };
 
     return (
         <div className="container">
 
-            <h1>SOC Memory Copilot</h1>
+            <header className="header">
 
-            <ThreatFeed onInvestigate={investigate} />
+                <div>
+                    <h1>🛡 ThreatVault SOC Memory Copilot</h1>
 
-            <InvestigationPanel
-                result={investigation}
-            />
+                    <p>
+                        AI-Powered Threat Intelligence &
+                        Investigation Dashboard
+                    </p>
+                </div>
 
-            <MemoryPanel
-                memory={memory}
-            />
+                <div className="status-card">
+
+                    <span className="status-dot"></span>
+
+                    Backend Connected
+
+                </div>
+
+            </header>
+
+            <div className="dashboard">
+
+                <div className="left-panel">
+
+                    <ThreatFeed
+                        onInvestigate={investigate}
+                    />
+
+                </div>
+
+                <div className="right-panel">
+
+                    {loading && (
+                        <div className="loading-card">
+                            Investigating IOC...
+                        </div>
+                    )}
+
+                    <InvestigationPanel
+                        result={investigation}
+                    />
+
+                    <MemoryPanel
+                        memory={memory}
+                    />
+
+                </div>
+
+            </div>
 
         </div>
     );

@@ -4,13 +4,21 @@ function MemoryPanel({ memory }) {
 
         <div className="panel">
 
-            <h2>Cognee Memory</h2>
+            <h2>🧠 Previous Memory</h2>
 
-            <pre>
+            {memory ? (
 
-                {memory || "No memory yet."}
+                <pre className="memory-box">
+                    {memory}
+                </pre>
 
-            </pre>
+            ) : (
+
+                <div className="empty">
+                    No previous investigation found.
+                </div>
+
+            )}
 
         </div>
 
