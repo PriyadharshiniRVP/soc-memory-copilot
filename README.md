@@ -127,7 +127,7 @@ The project uses Cognee's memory lifecycle to:
 
 ## 📖 Blog
 
-
+[https://medium.com/@priyarama2209/building-an-ai-soc-copilot-that-never-forgets-giving-cybersecurity-investigations-a-memory-with-3664e9dc1ecf](medium)
 
 ---
 
