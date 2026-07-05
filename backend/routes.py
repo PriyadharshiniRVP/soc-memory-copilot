@@ -3,7 +3,7 @@ import asyncio
 
 from models import InvestigationRequest
 
-from services.threat_service import investigate_ip
+from services.threat_service import investigate_indicator
 from services.investigation_service import save_investigation
 from services.feed_service import fetch_latest_pulses
 from services.feed_database_service import save_feed
@@ -26,7 +26,7 @@ def investigate(request: InvestigationRequest):
     )
 
     # Step 2: Get latest threat intelligence
-    result = investigate_ip(request.target)
+    result = investigate_indicator(request.target)
 
     # Step 3: Save investigation in MongoDB
     save_investigation(result)

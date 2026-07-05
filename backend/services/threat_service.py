@@ -1,5 +1,6 @@
 import os
 import requests
+import ipaddress
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -11,18 +12,34 @@ HEADERS = {
 }
 
 
-def investigate_ip(ip: str):
-    url = f"https://otx.alienvault.com/api/v1/indicators/IPv4/{ip}/general"
+def investigate_indicator(target: str, indicator_type: str = None):
+    """
+    Investigate an IOC using AlienVault OTX.
+    Supports IPv4 and Domain indicators.
+    """
+
+    # Detect type automatically if frontend doesn't send it
+    if indicator_type is None:
+        try:
+            ipaddress.ip_address(target)
+            indicator_type = "IPv4"
+        except ValueError:
+            indicator_type = "domain"
+
+    url = (
+        f"https://otx.alienvault.com/api/v1/"
+        f"indicators/{indicator_type}/{target}/general"
+    )
 
     response = requests.get(url, headers=HEADERS)
 
-    if response.status_code != 200:
-        raise Exception("Failed to fetch data from AlienVault")
+    response.raise_for_status()
 
     data = response.json()
 
     return {
-        "target": ip,
+        "target": target,
+        "type": indicator_type,
         "country": data.get("country_name"),
         "pulse_count": data.get("pulse_info", {}).get("count", 0),
         "reputation": data.get("reputation"),

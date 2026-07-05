@@ -4,6 +4,7 @@ from typing import Optional
 
 class InvestigationRequest(BaseModel):
     target: str
+    type: str | None = None
 
 
 class InvestigationResponse(BaseModel):
