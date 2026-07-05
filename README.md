@@ -39,21 +39,8 @@ This transforms the assistant from a simple chatbot into a continuously learning
 ---
 
 ## 🏗️ Architecture
+![alt text](image.png)
 
-```
-                 AlienVault OTX
-                       │
-                       ▼
-                FastAPI Backend
-                       │
-       ┌───────────────┴──────────────┐
-       ▼                              ▼
-   Cognee Memory                MongoDB Database
-       │                              │
-       └───────────────┬──────────────┘
-                       ▼
-                React Frontend
-```
 
 ---
 
@@ -137,11 +124,6 @@ The project uses Cognee's memory lifecycle to:
 
 ---
 
-## 📸 Demo
-
-
-
----
 
 ## 📖 Blog
 
@@ -153,7 +135,7 @@ The project uses Cognee's memory lifecycle to:
 
 **Priyadharshini R**
 
-Computer Science Engineering Student
+Computer Science Engineering Graduate
 
 Built for the **WeMakeDevs – The Hangover Part AI Hackathon 2026**.
 
